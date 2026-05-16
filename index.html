@@ -6,9 +6,10 @@
 <title>On the Record — Fiji Political Review</title>
 <style>
   :root {
-    --black: #111110;
+    --black: #1C1C1A;
+    --coral: #E07A5F;
     --gold: #E8B84B;
-    --cream: #F4F1EE;
+    --cream: #FFFFFF;
     --mid: #6B6B69;
     --border: #E2DDD8;
   }
@@ -56,7 +57,7 @@
   }
 
   .site-nav a:hover { color: var(--black); }
-  .site-nav a.active { color: var(--gold); }
+  .site-nav a.active { color: var(--coral); }
 
   /* Hero */
   .podcast-hero {
@@ -129,7 +130,7 @@
     font-size: 11px;
     letter-spacing: 3px;
     text-transform: uppercase;
-    color: #B8860B;
+    color: var(--coral);
     margin-bottom: 16px;
   }
 
@@ -155,8 +156,8 @@
     align-items: center;
     gap: 8px;
     padding: 10px 20px;
-    border: 1px solid var(--black);
-    color: var(--black);
+    border: 1px solid var(--coral);
+    color: var(--coral);
     text-decoration: none;
     font-size: 11px;
     letter-spacing: 1.5px;
@@ -166,9 +167,9 @@
   }
 
   .subscribe-btn:hover {
-    background: var(--black);
+    background: var(--coral);
     color: white;
-    border-color: var(--black);
+    border-color: var(--coral);
   }
 
   /* Episodes section */
@@ -182,7 +183,7 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    border-bottom: 2px solid var(--black);
+    border-bottom: 2px solid var(--coral);
     padding-bottom: 12px;
     margin-bottom: 40px;
   }
@@ -253,7 +254,7 @@
   .episode-play {
     width: 44px;
     height: 44px;
-    border: 1.5px solid rgba(232,184,75,0.5);
+    border: 1.5px solid var(--coral);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -267,7 +268,7 @@
     height: 0;
     border-style: solid;
     border-width: 6px 0 6px 10px;
-    border-color: transparent transparent transparent var(--gold);
+    border-color: transparent transparent transparent var(--coral);
     margin-left: 3px;
   }
 
@@ -283,7 +284,7 @@
     font-size: 10px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gold);
+    color: var(--coral);
     margin-bottom: 8px;
   }
 
@@ -456,10 +457,10 @@
       <div class="podcast-eyebrow">The FPR Podcast</div>
       <h1 class="podcast-hero-title">On the Record</h1>
       <p class="podcast-hero-desc">Conversations with the people shaping Fiji's political, constitutional and governance future. Independent, evidence-based, and focused on the questions that matter most to Fiji and the Pacific.</p>
+      <p style="font-family: Georgia, serif; font-size: 13px; color: var(--mid); margin-bottom: 28px; letter-spacing: 0.5px;">Hosted by <strong style="color: var(--black);">Lanieta Tukana</strong>, founding editor of the Fiji Political Review.</p>
       <div class="subscribe-links">
         <a href="#" class="subscribe-btn">&#9654; Spotify</a>
         <a href="#" class="subscribe-btn">&#9654; Apple Podcasts</a>
-        <a href="#" class="subscribe-btn">&#9654; YouTube</a>
       </div>
     </div>
   </div>
