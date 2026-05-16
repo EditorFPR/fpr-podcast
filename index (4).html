@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On the Record — Fiji Political Review</title>
+<style>
+  :root {
+    --black: #111110;
+    --gold: #E8B84B;
+    --cream: #F4F1EE;
+    --mid: #6B6B69;
+    --border: #E2DDD8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--cream);
+    font-family: Georgia, serif;
+    color: var(--black);
+  }
+
+  /* Header */
+  .site-header {
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--cream);
+  }
+
+  .site-logo {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--black);
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .site-nav {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .site-nav a {
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .site-nav a:hover { color: var(--black); }
+  .site-nav a.active { color: var(--gold); }
+
+  /* Hero */
+  .podcast-hero {
+    padding: 80px 40px 60px;
+    display: flex;
+    align-items: flex-start;
+    gap: 60px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .podcast-artwork {
+    width: 200px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 8px;
+    background: var(--black);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(0,0,0,0.1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  }
+
+  .artwork-mic {
+    width: 60px;
+    height: 60px;
+    border: 2px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .artwork-mic::after {
+    content: '';
+    width: 18px;
+    height: 18px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .artwork-title {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: white;
+    text-transform: uppercase;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  .artwork-sub {
+    font-size: 8px;
+    letter-spacing: 1px;
+    color: rgba(232,184,75,0.6);
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  .podcast-hero-text {
+    padding-top: 16px;
+  }
+
+  .podcast-eyebrow {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #B8860B;
+    margin-bottom: 16px;
+  }
+
+  .podcast-hero-title {
+    font-size: 42px;
+    color: var(--black);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .podcast-hero-desc {
+    font-size: 16px;
+    color: #2C2C2A;
+    line-height: 1.7;
+    max-width: 540px;
+    margin-bottom: 32px;
+    font-style: italic;
+  }
+
+  .subscribe-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--black);
+    color: var(--black);
+    text-decoration: none;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+
+  .subscribe-btn:hover {
+    background: var(--black);
+    color: white;
+    border-color: var(--black);
+  }
+
+  /* Episodes section */
+  .episodes-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 60px 40px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 2px solid var(--black);
+    padding-bottom: 12px;
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  .episode-count {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--mid);
+  }
+
+  /* Episode grid */
+  .episode-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px 32px;
+  }
+
+  .episode-card {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .episode-image {
+    width: 100%;
+    aspect-ratio: 1;
+    background: var(--black);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .episode-image-inner {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .episode-type-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(0,0,0,0.6);
+    padding: 4px 8px;
+    border: 1px solid rgba(232,184,75,0.3);
+  }
+
+  .episode-play {
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid rgba(232,184,75,0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .episode-play::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 6px 0 6px 10px;
+    border-color: transparent transparent transparent var(--gold);
+    margin-left: 3px;
+  }
+
+  .episode-image-title {
+    font-size: 12px;
+    color: white;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 0.5px;
+  }
+
+  .episode-series {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .episode-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 10px;
+    color: var(--black);
+  }
+
+  .episode-card:hover .episode-title {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .episode-excerpt {
+    font-size: 13px;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 10px;
+    font-style: italic;
+  }
+
+  .episode-meta {
+    font-size: 11px;
+    color: var(--mid);
+    letter-spacing: 0.5px;
+  }
+
+  /* Coming soon card */
+  .coming-soon {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+
+  .coming-soon .episode-image {
+    border: 1px dashed rgba(0,0,0,0.2);
+    background: transparent;
+  }
+
+  .coming-soon-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-align: center;
+  }
+
+  /* About section */
+  .about-section {
+    background: var(--black);
+    padding: 60px 40px;
+  }
+
+  .about-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .about-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+  }
+
+  .about-text {
+    font-size: 15px;
+    color: rgba(255,255,255,0.7);
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  .about-host-name {
+    font-size: 18px;
+    color: white;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .about-host-role {
+    font-size: 12px;
+    letter-spacing: 1px;
+    color: var(--gold);
+    margin-bottom: 16px;
+    text-transform: uppercase;
+  }
+
+  .about-host-bio {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+  }
+
+  /* Footer */
+  .site-footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--cream);
+  }
+
+  .footer-logo {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--mid);
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--mid);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .footer-links a:hover { color: var(--black); }
+
+  @media (max-width: 768px) {
+    .podcast-hero { flex-direction: column; gap: 32px; padding: 40px 20px; }
+    .episode-grid { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 40px; }
+    .site-nav { display: none; }
+    .episodes-section { padding: 40px 20px; }
+    .about-section { padding: 40px 20px; }
+    .site-footer { flex-direction: column; gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="site-header">
+  <a href="https://fijipoliticalreview.com" class="site-logo">Fiji Political Review</a>
+  <nav>
+    <ul class="site-nav">
+      <li><a href="#">Analysis</a></li>
+      <li><a href="#">Briefings</a></li>
+      <li><a href="#">Pacific Politics</a></li>
+      <li><a href="#" class="active">Podcast</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Hero -->
+<div style="background: white; border-bottom: 1px solid var(--border);">
+  <div class="podcast-hero">
+    <div class="podcast-artwork">
+      <div class="artwork-mic"></div>
+      <div class="artwork-title">On the Record</div>
+      <div class="artwork-sub">Fiji Political Review</div>
+    </div>
+    <div class="podcast-hero-text">
+      <div class="podcast-eyebrow">The FPR Podcast</div>
+      <h1 class="podcast-hero-title">On the Record</h1>
+      <p class="podcast-hero-desc">Conversations with the people shaping Fiji's political, constitutional and governance future. Independent, evidence-based, and focused on the questions that matter most to Fiji and the Pacific.</p>
+      <div class="subscribe-links">
+        <a href="#" class="subscribe-btn">&#9654; Spotify</a>
+        <a href="#" class="subscribe-btn">&#9654; Apple Podcasts</a>
+        <a href="#" class="subscribe-btn">&#9654; YouTube</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Episodes -->
+<section class="episodes-section">
+  <div class="section-header">
+    <span class="section-title">All Episodes</span>
+    <span class="episode-count">1 Episode</span>
+  </div>
+
+  <div class="episode-grid">
+
+    <!-- Trailer -->
+    <a href="#" class="episode-card">
+      <div class="episode-image">
+        <div class="episode-type-badge">Trailer</div>
+        <div class="episode-image-inner">
+          <div class="episode-play"></div>
+          <div class="episode-image-title">On the Record<br>Fiji Political Review</div>
+        </div>
+      </div>
+      <div class="episode-series">On the Record</div>
+      <h2 class="episode-title">Trailer — On the Record, Fiji Political Review</h2>
+      <p class="episode-excerpt">Introducing On the Record — the Fiji Political Review's interview podcast. Conversations with the people shaping Fiji's political, constitutional and governance future.</p>
+      <div class="episode-meta">May 2026 &nbsp;·&nbsp; 1 min</div>
+    </a>
+
+    <!-- Coming soon 1 -->
+    <div class="episode-card coming-soon">
+      <div class="episode-image">
+        <div class="episode-image-inner">
+          <div class="coming-soon-label">Coming Soon<br>Episode 1</div>
+        </div>
+      </div>
+      <div class="episode-series">On the Record</div>
+      <h2 class="episode-title">Episode 1 — Coming Soon</h2>
+      <p class="episode-excerpt">The Vuvale Union and the Dependency Trap.</p>
+      <div class="episode-meta">June 2026</div>
+    </div>
+
+    <!-- Coming soon 2 -->
+    <div class="episode-card coming-soon">
+      <div class="episode-image">
+        <div class="episode-image-inner">
+          <div class="coming-soon-label">Coming Soon<br>Episode 2</div>
+        </div>
+      </div>
+      <div class="episode-series">On the Record</div>
+      <h2 class="episode-title">Episode 2 — Coming Soon</h2>
+      <p class="episode-excerpt">Fiji's Constitutional Moment.</p>
+      <div class="episode-meta">June 2026</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <span class="footer-logo">Fiji Political Review</span>
+  <ul class="footer-links">
+    <li><a href="#">Analysis</a></li>
+    <li><a href="#">Briefings</a></li>
+    <li><a href="#">Podcast</a></li>
+    <li><a href="#">About</a></li>
+    <li><a href="#">fijipoliticalreview.com</a></li>
+  </ul>
+</footer>
+
+</body>
+</html>
