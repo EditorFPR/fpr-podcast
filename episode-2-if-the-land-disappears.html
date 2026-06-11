@@ -226,8 +226,168 @@
   <div class="episode-meta">June 2026 &nbsp;·&nbsp; 11 min &nbsp;·&nbsp; Read by Tom</div>
 
   <div class="episode-player">
-    <div id="buzzsprout-player-19330338"></div>
-    <script src="https://www.buzzsprout.com/2616374/episodes/19330338.js?container_id=buzzsprout-player-19330338&player=small" type="text/javascript" charset="utf-8"></script>
+<div class="fpr-dispatch-player" id="fprPlayer">
+  <style>
+    .fpr-dispatch-player{
+      --slate:#2c3549; --slate-deep:#232a3a; --coral:#e07a5f;
+      --cream:#f4f1ee; --cream-dim:rgba(244,241,238,.62);
+      --track:rgba(244,241,238,.22);
+      box-sizing:border-box; max-width:860px; width:100%;
+      background:linear-gradient(135deg,var(--slate) 0%,var(--slate-deep) 100%);
+      border-radius:14px; padding:16px;
+      display:flex; align-items:center; gap:18px;
+      font-family:Georgia,'Times New Roman',serif; color:var(--cream);
+      box-shadow:0 6px 24px rgba(35,42,58,.35);
+    }
+    .fpr-dispatch-player *{box-sizing:border-box;margin:0;padding:0}
+
+    /* ---- cover art (pure CSS/SVG, no image file needed) ---- */
+    .fpr-cover{flex:0 0 112px;width:112px;height:112px;border-radius:8px;overflow:hidden;
+      box-shadow:0 3px 10px rgba(0,0,0,.4)}
+    .fpr-cover svg{display:block;width:100%;height:100%}
+
+    /* ---- middle column ---- */
+    .fpr-meta{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:7px}
+    .fpr-title{font-size:1.06rem;font-weight:700;letter-spacing:.01em;
+      white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .fpr-show{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.82rem;
+      color:var(--coral);font-weight:600}
+    .fpr-show span{color:var(--cream-dim);font-weight:400}
+
+    .fpr-controls{display:flex;align-items:center;gap:12px;margin-top:4px}
+    .fpr-skip{background:none;border:none;cursor:pointer;color:var(--cream-dim);
+      width:30px;height:30px;display:grid;place-items:center;border-radius:50%;
+      transition:color .15s}
+    .fpr-skip:hover,.fpr-skip:focus-visible{color:var(--cream)}
+    .fpr-skip:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+    .fpr-skip svg{width:22px;height:22px}
+
+    .fpr-bar{flex:1 1 auto;height:5px;background:var(--track);border-radius:99px;
+      position:relative;cursor:pointer}
+    .fpr-bar-fill{position:absolute;inset:0 auto 0 0;width:0%;
+      background:var(--coral);border-radius:99px}
+    .fpr-bar:hover .fpr-bar-fill::after,.fpr-bar:focus-visible .fpr-bar-fill::after{
+      content:'';position:absolute;right:-6px;top:50%;transform:translateY(-50%);
+      width:12px;height:12px;border-radius:50%;background:var(--cream)}
+    .fpr-bar:focus-visible{outline:2px solid var(--coral);outline-offset:4px}
+
+    .fpr-time{font-family:'Helvetica Neue',Arial,sans-serif;font-size:.8rem;
+      color:var(--cream-dim);min-width:84px;text-align:right;font-variant-numeric:tabular-nums}
+
+    /* ---- play button ---- */
+    .fpr-play{flex:0 0 52px;width:52px;height:52px;border-radius:50%;border:none;
+      background:var(--cream);color:var(--slate);cursor:pointer;
+      display:grid;place-items:center;transition:transform .12s ease, background .15s;
+      align-self:center}
+    .fpr-play:hover{transform:scale(1.06);background:#fff}
+    .fpr-play:focus-visible{outline:3px solid var(--coral);outline-offset:3px}
+    .fpr-play svg{width:22px;height:22px;margin-left:2px}
+    .fpr-play.playing svg{margin-left:0}
+
+    @media (max-width:560px){
+      .fpr-dispatch-player{flex-wrap:wrap;gap:12px;padding:14px}
+      .fpr-cover{flex-basis:72px;width:72px;height:72px}
+      .fpr-meta{flex-basis:calc(100% - 160px)}
+      .fpr-controls{flex-basis:100%;order:3}
+      .fpr-time{min-width:74px}
+    }
+    @media (prefers-reduced-motion:reduce){
+      .fpr-play{transition:none}.fpr-play:hover{transform:none}
+    }
+  </style>
+
+  <!-- cover art -->
+  <div class="fpr-cover">
+    <img src="data:image/jpeg;base64,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" alt="If the Land Disappears — Pacific Dispatch episode artwork" style="display:block;width:100%;height:100%;object-fit:cover">
+  </div>
+
+  <!-- title / show / controls -->
+  <div class="fpr-meta">
+    <div class="fpr-title">If the Land Disappears</div>
+    <div class="fpr-show">9 June 2026 <span>· Pacific Dispatch · Fiji Political Review</span></div>
+    <div class="fpr-controls">
+      <button class="fpr-skip" id="fprBack" aria-label="Back 15 seconds">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M11 4 L7 8 L11 12" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 8 H14 A6 6 0 1 1 8 14" stroke-linecap="round"/>
+          <text x="9.2" y="21.5" font-size="6.5" fill="currentColor" stroke="none"
+                font-family="Helvetica,Arial,sans-serif" font-weight="700">15</text>
+        </svg>
+      </button>
+      <div class="fpr-bar" id="fprBar" role="slider" tabindex="0" aria-label="Seek"
+           aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+        <div class="fpr-bar-fill" id="fprFill"></div>
+      </div>
+      <button class="fpr-skip" id="fprFwd" aria-label="Forward 15 seconds">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M13 4 L17 8 L13 12" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 8 H10 A6 6 0 1 0 16 14" stroke-linecap="round"/>
+          <text x="9.2" y="21.5" font-size="6.5" fill="currentColor" stroke="none"
+                font-family="Helvetica,Arial,sans-serif" font-weight="700">15</text>
+        </svg>
+      </button>
+      <div class="fpr-time" id="fprTime">0:00 / 0:00</div>
+    </div>
+  </div>
+
+  <!-- play -->
+  <button class="fpr-play" id="fprPlay" aria-label="Play">
+    <svg id="fprPlayIcon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M6 4 L20 12 L6 20 Z"/>
+    </svg>
+  </button>
+
+  <!-- ===== EPISODE AUDIO URL: replace src with your hosted mp3 ===== -->
+  <audio id="fprAudio" preload="metadata"
+         src="https://www.buzzsprout.com/2616374/19330338.mp3"></audio>
+
+  <script>
+  (function(){
+    var a=document.getElementById('fprAudio'),
+        play=document.getElementById('fprPlay'),
+        icon=document.getElementById('fprPlayIcon'),
+        bar=document.getElementById('fprBar'),
+        fill=document.getElementById('fprFill'),
+        time=document.getElementById('fprTime'),
+        back=document.getElementById('fprBack'),
+        fwd=document.getElementById('fprFwd');
+    var PLAY='M6 4 L20 12 L6 20 Z',
+        PAUSE='M6 4 H10 V20 H6 Z M14 4 H18 V20 H14 Z';
+
+    function fmt(s){ if(!isFinite(s))return'0:00';
+      var m=Math.floor(s/60),r=Math.floor(s%60);
+      return m+':'+(r<10?'0':'')+r; }
+    function paint(){
+      var p=a.duration?(a.currentTime/a.duration*100):0;
+      fill.style.width=p+'%';
+      bar.setAttribute('aria-valuenow',Math.round(p));
+      time.textContent=fmt(a.currentTime)+' / '+fmt(a.duration);
+    }
+    play.addEventListener('click',function(){ a.paused?a.play():a.pause(); });
+    a.addEventListener('play',function(){ icon.firstElementChild.setAttribute('d',PAUSE);
+      play.classList.add('playing'); play.setAttribute('aria-label','Pause'); });
+    a.addEventListener('pause',function(){ icon.firstElementChild.setAttribute('d',PLAY);
+      play.classList.remove('playing'); play.setAttribute('aria-label','Play'); });
+    a.addEventListener('timeupdate',paint);
+    a.addEventListener('loadedmetadata',paint);
+    a.addEventListener('ended',function(){ a.currentTime=0; paint(); });
+
+    back.addEventListener('click',function(){ a.currentTime=Math.max(0,a.currentTime-15); });
+    fwd.addEventListener('click',function(){ a.currentTime=Math.min(a.duration||0,a.currentTime+15); });
+
+    function seek(e){
+      var r=bar.getBoundingClientRect(),
+          x=(e.touches?e.touches[0].clientX:e.clientX)-r.left;
+      if(a.duration) a.currentTime=Math.max(0,Math.min(1,x/r.width))*a.duration;
+    }
+    bar.addEventListener('click',seek);
+    bar.addEventListener('keydown',function(e){
+      if(e.key==='ArrowLeft'){a.currentTime=Math.max(0,a.currentTime-5);e.preventDefault();}
+      if(e.key==='ArrowRight'){a.currentTime=Math.min(a.duration||0,a.currentTime+5);e.preventDefault();}
+    });
+  })();
+  </script>
+</div>
   </div>
 
   <p class="episode-desc">Tom reads "If the Land Disappears," the first Pacific Dispatch audio essay from Fiji Political Review. What happens to a country when the land it was built on goes beneath the sea? Not metaphorically — literally. It's a question international law has never had to answer, and for the Pacific it now comes with a deadline. This essay examines what rising seas mean for statehood, for maritime boundaries, and for peoples who have lived on their islands for three thousand years. Pacific Dispatch is an audio essay series from Fiji Political Review.</p>
